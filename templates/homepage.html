@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curvetopia - Process and Visualize Your Beautiful Doodles</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #007bff;
+        }
+
+        .navbar-brand {
+            font-size: 1.75rem;
+            color: #fff;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+        }
+
+        .container {
+            margin-top: 50px;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .upload-section {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 50px;
+        }
+
+        .upload-section h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .upload-section .form-control-file {
+            margin-bottom: 20px;
+        }
+
+        .upload-section button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.25rem;
+            border-radius: 50px;
+        }
+
+        .output-images img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #007bff;
+            margin-bottom: 20px;
+        }
+
+        .download-buttons a {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer a {
+            color: #ffc107;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Curvetopia - The Doodle World</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="text-center">Welcome to Polyline Processor</h1>
+        <p class="text-center description">Upload your CSV or SVG files and visualize your data as beautiful plots.
+            Download the processed results in various formats and use them in your projects. Our tool makes it easy to
+            transform raw data into stunning visualizations.</p>
+
+        <div class="upload-section">
+            <h2>Upload Your File</h2>
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="file">Choose CSV or SVG file to upload:</label>
+                    <input type="file" class="form-control-file" id="file" name="file" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg">Upload and Process</button>
+            </form>
+        </div>
+
+        {% if svg_file and plot_svg_file and plot_png_file %}
+        <div class="output-images">
+            <h2 class="text-center">Your Processed Results</h2>
+            <div class="text-center">
+                <h3>SVG Plot:</h3>
+                <img src="{{ plot_svg_file }}" alt="SVG Plot">
+            </div>
+            <div class="text-center">
+                <h3>PNG Plot:</h3>
+                <img src="{{ plot_png_file }}" alt="PNG Plot">
+            </div>
+        </div>
+        <div class="download-buttons text-center">
+            <a href="{{ svg_file }}" class="btn btn-success" download>Download Processed SVG</a>
+            <a href="{{ plot_svg_file }}" class="btn btn-success" download>Download SVG Plot</a>
+            <a href="{{ plot_png_file }}" class="btn btn-success" download>Download PNG Plot</a>
+        </div>
+        {% endif %}
+
+        <!-- Additional Content Sections -->
+        <div class="mt-5">
+            <h2>Features</h2>
+            <ul>
+                <li>Upload CSV or SVG files for processing.</li>
+                <li>Visualize your data in multiple formats, including SVG and PNG.</li>
+                <li>Download processed data for use in your own projects.</li>
+                <li>User-friendly interface with clear instructions.</li>
+            </ul>
+        </div>
+
+        <div class="mt-5">
+            <h2>About Us</h2>
+            <p>Polyline Processor is a powerful tool for data visualization, designed to help users transform raw data
+                into clear, meaningful plots. Our mission is to provide an easy-to-use platform that supports a wide range of
+                data formats and visualization styles. Whether you're a data scientist, engineer, or hobbyist, Polyline
+                Processor is the perfect tool for your needs.</p>
+        </div>
+
+        <div class="mt-5">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need assistance, please don't hesitate to <a href="mailto:amans6963@gmail.com?subject=Contact%20Us%20-%20Polyline%20CurveTopia&body=Please%20describe%20your%20issue%20or%20query%20here.">contact us</a>. We're here to help!</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 CurveTopia. All rights reserved.</p>
+            <p>Designed by <a href="https://www.github.com/D-Aman-S">D-Aman-S</a></p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
