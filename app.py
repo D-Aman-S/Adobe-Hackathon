@@ -71,7 +71,7 @@ def process_uploaded_file():
         
         output_svg_file_path, svg_plot_path, png_plot_path = handle_file_processing(input_file_path, output_svg_file_path)
         
-        return render_template('upload.html', 
+        return render_template('homepage.html', 
                                svg_file=url_for('serve_uploaded_file', filename=safe_filename.rsplit('.', 1)[0] + '.svg'),
                                plot_svg_file=url_for('serve_uploaded_plot', ext='svg'),
                                plot_png_file=url_for('serve_uploaded_plot', ext='png'))
