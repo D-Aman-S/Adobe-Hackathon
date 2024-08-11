@@ -77,13 +77,13 @@ def process_uploaded_file():
                                plot_png_file=url_for('serve_uploaded_plot', ext='png'))
     return redirect(request.url)
 
-@app.route('/uploads/plot.<ext>')
+@app.route('/uploaded_files/plot.<ext>')
 def serve_uploaded_plot(ext):
     if ext not in ['svg', 'png']:
         return "File not found", 404
     return send_from_directory(app.config['OUTPUT_DIRECTORY'], f'plot.{ext}')
 
-@app.route('/uploads/<filename>')
+@app.route('/uploaded_files/<filename>')
 def serve_uploaded_file(filename):
     return send_from_directory(app.config['OUTPUT_DIRECTORY'], filename)
 
